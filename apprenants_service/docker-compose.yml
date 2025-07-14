@@ -1,0 +1,28 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  apprenant-service:
+    build: .
+    container_name: apprenant-service
+    ports:
+      - '5000:5000'
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    networks:
+      - apprenant-net
+
+volumes:
+  mongo-data:
+
+networks:
+  apprenant-net:
+    driver: bridge
