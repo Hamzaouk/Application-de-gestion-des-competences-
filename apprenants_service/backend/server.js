@@ -15,3 +15,5 @@ app.use('/api/apprenants', apprenantRoutes);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`✅ Apprenant-Service running on port ${PORT}`));
+
+export default app;
